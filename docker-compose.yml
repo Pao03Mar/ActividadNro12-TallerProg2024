@@ -7,14 +7,14 @@ version: '1.1'
 
 services:
 
-  db:
+  db-postgres:
     image: postgres
     restart: always
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: gonzalezj
-      POSTGRES_PASSWORD: Jesus556
+      POSTGRES_USER: GonzalezP
+      POSTGRES_PASSWORD: paomar11
       POSTGRES_DB: Prueba
 
   adminer:
@@ -22,3 +22,23 @@ services:
     restart: always
     ports:
       - 8080:8080
+
+  db-mysql:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: Prueba
+      MYSQL_USER: GonzalezP
+      MYSQL_PASSWORD: paomar11
+      MYSQL_ROOT_PASSWORD: paomar11
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: db-mysql
+      MYSQL_ROOT_PASSWORD: paomar11
